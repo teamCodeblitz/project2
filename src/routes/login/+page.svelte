@@ -194,7 +194,7 @@
             </div>
             <button type="submit" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600" on:click={handleLogin}>Log In</button>
             <p class="mt-4 text-center">Don't Have an Account? 
-                <button type="button" class="text-red-500" on:click={() => window.location.href='/projec/register'}>Register</button>
+                <button type="button" class="text-red-500" on:click={() => window.location.href='/project2/register'}>Register</button>
             </p>
             <p class="mt-2 text-center text-sm text-gray-500">Forgot your password? <a href="/reset-password" class="text-blue-500">Reset it here</a>.</p>
         </form>
