@@ -6,7 +6,7 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter({ pages: "build", assets: "build", fallback: '/profile2/' , precompress: false, strict: true }),
+		adapter: adapter({ pages: "build", assets: "build", fallback: undefined, precompress: false, strict: true }),
 	}
 };
 
