@@ -25,7 +25,7 @@
                 <input type="password" id="password" bind:value={password} required class="mt-1 block w-full p-2 border border-gray-300 rounded" />
             </div>
             <button type="submit" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">Register</button>
-            <p class="mt-4 text-center">Already Have an Account? <a href="/login" class="text-red-500">Login</a></p>
+            <button type="button" class="text-red-500" on:click={() => window.location.href='/profile/login'}>Login</button>
         </form>
     </div>
 </div>

@@ -32,7 +32,9 @@
                 <input type="password" id="password" bind:value={password} required class="mt-1 block w-full p-2 border border-gray-300 rounded" />
             </div>
             <button type="submit" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600" on:click={handleLogin}>Log In</button>
-            <p class="mt-4 text-center">Don't Have Any Account? <a href="/register" class="text-red-500">Register</a></p>
+            <p class="mt-4 text-center">Don't Have Any Account? 
+                <button type="button" class="text-red-500" on:click={() => window.location.href='/profile/register'}>Register</button>
+            </p>
         </form>
     </div>
 </div>
