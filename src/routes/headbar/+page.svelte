@@ -6,7 +6,7 @@
   let currentDateTime: string;
 
   function handleLogout() {
-    navigate('/login'); // Navigate to the login page
+    window.location.href = '/project2/login'; 
   }
 
   onMount(() => {
