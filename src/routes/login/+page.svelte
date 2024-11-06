@@ -153,6 +153,7 @@
     z-index: 2;
 }
 </style>
+
 <div class="flex flex-col min-h-screen md:flex-row">
     <div class="flex-1 bg-green-700 flex items-center justify-center relative">
         <ul class="circles">
@@ -174,10 +175,15 @@
         <div class="image-container">
             <img src="./ESS.png" alt="Fallback description if image fails to load" class="max-w-full h-auto" aria-hidden="true" />
         </div>
+        <div class="absolute bottom-10 left-10 text-white text-lg">
+            <h1 class="font-bold">Welcome to Event Scheduling System</h1>
+            <p>Your gateway to a seamless experience. Join us and explore endless possibilities!</p>
+        </div>
     </div>
     <div class="flex-1 flex items-center justify-center">
         <form on:submit|preventDefault={handleSubmit} class="p-6 w-full md:w-2/3">
-            <h2 class="text-2xl font-bold mb-4 text-center">Log In</h2>
+            <h2 class="text-3xl font-extrabold mb-4 text-center text-gradient">Welcome Back to Your Journey!</h2>
+            <p class="text-center mb-6 text-gray-600">Please enter your credentials to access your account.</p>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                 <input type="email" id="email" bind:value={email} required class="mt-1 block w-full p-2 border border-gray-300 rounded" />
@@ -187,9 +193,10 @@
                 <input type="password" id="password" bind:value={password} required class="mt-1 block w-full p-2 border border-gray-300 rounded" />
             </div>
             <button type="submit" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600" on:click={handleLogin}>Log In</button>
-            <p class="mt-4 text-center">Don't Have Any Account? 
+            <p class="mt-4 text-center">Don't Have an Account? 
                 <button type="button" class="text-red-500" on:click={() => window.location.href='/projec/register'}>Register</button>
             </p>
+            <p class="mt-2 text-center text-sm text-gray-500">Forgot your password? <a href="/reset-password" class="text-blue-500">Reset it here</a>.</p>
         </form>
     </div>
 </div>

@@ -170,10 +170,15 @@
             <div class="image-container">
                 <img src="./ESS.png" alt="Fallback description if image fails to load" class="max-w-full h-auto" aria-hidden="true" />
             </div>
+            <div class="absolute bottom-10 left-10 text-white text-lg">
+                <h1 class="font-bold">Welcome to Event Scheduling System</h1>
+                <p>Your gateway to a seamless experience. Join us and explore endless possibilities!</p>
+            </div>
         </div>
     <div class="flex-1 flex items-center justify-center">
         <form on:submit|preventDefault={handleSubmit} class="p-6 w-full md:w-2/3">
-            <h2 class="text-2xl font-bold mb-4 text-center">Register</h2>
+            <h2 class="text-3xl font-extrabold mb-4 text-center text-gradient">Join Us on Your Journey!</h2>
+            <p class="text-center mb-6 text-gray-600">To get started, please fill in your details to create an account.</p>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                 <input type="email" id="email" bind:value={email} required class="mt-1 block w-full p-2 border border-gray-300 rounded" placeholder="Enter your email"/>
