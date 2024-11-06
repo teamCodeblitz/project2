@@ -196,7 +196,7 @@
             <p class="mt-4 text-center">Don't Have an Account? 
                 <button type="button" class="text-red-500" on:click={() => window.location.href='/project2/register'}>Register</button>
             </p>
-            <p class="mt-2 text-center text-sm text-gray-500">Forgot your password? <a href="/reset-password" class="text-blue-500">Reset it here</a>.</p>
+            <p class="mt-2 text-center text-sm text-gray-500">Version 1.0.0 Developed by Team Codeblitz</p>
         </form>
     </div>
 </div>
