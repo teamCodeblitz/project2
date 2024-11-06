@@ -4,15 +4,13 @@
 	let email = 'user@example.com';
 	let password = 'password';
 
-	// Define the handleLogin function
 	function handleLogin() {
 		console.log('Logging in with', email, password);
-		window.location.href = '/project2/dashboard'; // Updated redirect path
+		window.location.href = '/project2/dashboard'; 
 	}
 
-	// Define the handleSubmit function
 	function handleSubmit() {
-		handleLogin(); // Call handleLogin when the form is submitted
+		handleLogin(); 
 	}
 </script>
 
