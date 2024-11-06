@@ -7,7 +7,7 @@
 	// Define the handleLogin function
 	function handleLogin() {
 		console.log('Logging in with', email, password);
-		window.location.href = '/team-frontend.github.io-project2/dashboard'; // Updated redirect path
+		window.location.href = '/project2/dashboard'; // Updated redirect path
 	}
 
 	// Define the handleSubmit function
