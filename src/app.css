@@ -1,0 +1,235 @@
+/* Tailwind CSS imports */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+html {
+	scroll-behavior: smooth;
+}
+
+/* Animated gradient background */
+.bg-gradient {
+	background: linear-gradient(45deg, #000000, #050508, #080810);
+	background-size: 400% 400%;
+	animation: gradientBG 15s ease infinite;
+	min-height: 100vh;
+	position: relative;
+}
+
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/* Decorative shapes */
+.shapes {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.shape {
+	position: absolute;
+	filter: blur(80px);
+	opacity: 0.15;
+}
+
+.shape-1 {
+	top: -20%;
+	left: -10%;
+	width: 60%;
+	height: 60%;
+	background: radial-gradient(circle, #ff6b6b, #ff6b6b00);
+	animation: float 20s ease-in-out infinite;
+}
+
+.shape-2 {
+	bottom: -20%;
+	right: -10%;
+	width: 70%;
+	height: 70%;
+	background: radial-gradient(circle, #4ecdc4, #4ecdc400);
+	animation: float 25s ease-in-out infinite reverse;
+}
+
+.shape-3 {
+	top: 50%;
+	left: 50%;
+	width: 50%;
+	height: 50%;
+	background: radial-gradient(circle, #f7b733, #f7b73300);
+	animation: float 30s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+	33% {
+		transform: translate(2%, 2%) rotate(120deg);
+	}
+	66% {
+		transform: translate(-2%, -1%) rotate(240deg);
+	}
+	100% {
+		transform: translate(0, 0) rotate(360deg);
+	}
+}
+
+/* Main content positioning */
+.content {
+	position: relative;
+	z-index: 1;
+}
+
+/* Custom scrollbar styles */
+.custom-scrollbar {
+	position: fixed;
+	top: 0;
+	right: 4px;
+	height: 100%;
+	width: 3px;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 3px;
+	z-index: 1000;
+}
+
+.scrollbar-thumb {
+	position: absolute;
+	width: 100%;
+	height: 20%;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+/* Hide default scrollbars */
+body, html {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	overflow-y: scroll;
+}
+
+body::-webkit-scrollbar, html::-webkit-scrollbar {
+	display: none;
+}
+
+/* Floating mini navigation styles */
+.mini-nav {
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 15px;
+	padding: 12px 25px;
+	border-radius: 25px;
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	z-index: 1000;
+}
+
+/* Mini navigation item styles */
+.mini-nav-item {
+	color: white;
+	text-decoration: none;
+	font-size: 16px;
+	transition: transform 0.2s ease-in-out;
+	position: relative; /* Added for pseudo-element positioning */
+}
+
+.mini-nav-item:hover {
+	opacity: 1; /* Changed from 0.7 to keep full opacity */
+	transform: scale(1.1);
+}
+
+/* Mini navigation icon styles */
+.mini-nav-icon {
+	transition: all 0.2s ease-in-out;
+	position: relative;
+	z-index: 2;
+}
+
+.mini-nav-item:hover .mini-nav-icon {
+	color: #4ecdc4;
+	transform: scale(1.2); /* Slightly larger scale for the icon */
+}
+
+/* Bubble effect */
+.mini-nav-item::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	background: rgba(78, 205, 196, 0.2); /* Teal color with low opacity */
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	transition: all 0.3s ease-in-out;
+	z-index: 1;
+}
+
+.mini-nav-item:hover::after {
+	width: 40px; /* Adjust size as needed */
+	height: 40px;
+}
+
+/* Font-face declarations */
+@font-face {
+	font-family: 'Libre Franklin';
+	src: url('/fonts/LibreFranklin-Regular.woff2') format('woff2'),
+		 url('/fonts/LibreFranklin-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Mango Grotesque';
+	src: url('/fonts/MangoGrotesque-Regular.woff2') format('woff2'),
+		 url('/fonts/MangoGrotesque-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'PP Neue Montreal';
+	src: url('/fonts/PPNeueMontreal-Regular.woff2') format('woff2'),
+		 url('/fonts/PPNeueMontreal-Regular.woff') format('woff');
+}
+
+.bg-black {
+	z-index: -1;
+	transition: opacity 0.4s ease-out;
+}
+
+.custom-cursor {
+	cursor: none;
+}
+
+.cursor {
+	position: fixed;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #ffffff;
+	border-radius: 50%;
+	pointer-events: none;
+	transform: translate(-50%, -50%);
+	z-index: 9999;
+	transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.cursor.hovering {
+	width: 40px;
+	height: 40px;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
