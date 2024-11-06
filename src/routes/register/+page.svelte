@@ -122,35 +122,20 @@
       }
     }
     
-    /*
-    @media (max-width: 750px) {
-      .content {
-         flex-direction: column-reverse;
-      }
-      
-      .btn {
-        margin: 10px auto 40px;
-      }
-    }
-    */
-    
-    .shapes {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        width: 100%;
-        height: 100px;
-        pointer-events: none;
-        z-index: 1;
-    }
-    
     .image-container {
         position: relative;
         z-index: 2;
+
     }
+    /* Add this CSS to hide the loader on mobile */
+    @media (max-width: 750px) {
+     .image-container, .add, .font-bold, .left-section {
+        display: none;
+    }
+    }   
     </style>
     <div class="flex flex-col min-h-screen md:flex-row">
-        <div class="flex-1 bg-green-700 flex items-center justify-center relative">
+        <div class="flex-1 bg-green-700 flex items-center justify-center relative left-section">
             <ul class="circles">
                 <li></li>
                 <li></li>
@@ -163,16 +148,12 @@
                 <li></li>
                 <li></li>
             </ul>
-            <div class="shapes">
-                <div class="shape1"></div>
-                <div class="shape2"></div>
-            </div>
             <div class="image-container">
                 <img src="./ESS.png" alt="Fallback description if image fails to load" class="max-w-full h-auto" aria-hidden="true" />
             </div>
             <div class="absolute bottom-10 left-10 text-white text-lg">
                 <h1 class="font-bold">Welcome to Event Scheduling System</h1>
-                <p>Your gateway to a seamless experience. Join us and explore endless possibilities!</p>
+                <p class="add">Your gateway to a seamless experience. Join us and explore endless possibilities!</p>
             </div>
         </div>
     <div class="flex-1 flex items-center justify-center">

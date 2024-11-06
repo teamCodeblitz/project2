@@ -122,3 +122,11 @@
     Schedule Now
   </button>
 </form>
+
+<style>
+  @media (max-width: 750px) {
+    form {
+      width: 100%;
+    }
+  }
+</style>

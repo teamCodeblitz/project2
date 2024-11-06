@@ -36,9 +36,25 @@
   <div class="date-time-container text-white text-lg mt-2 md:mt-0 flex-1 text-center">
     {currentDateTime}
   </div>
-  <button class="text-white font-semibold mt-2 md:mt-0 logout-button" on:click={handleLogout}>
+  <button class="text-white font-semibold mt-2 md:mt-0 logout-button md:ml-auto">
     <i class="fas fa-sign-out-alt"></i>
   </button>
 </nav>
 
-
+<style>
+  @media (max-width: 750px) {
+    .date-time-container {
+      display: none;
+    }
+    nav {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+    .logout-button {
+      margin-left: auto;
+      margin-top: 0;
+    }
+  }
+</style>
