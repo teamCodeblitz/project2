@@ -31,7 +31,7 @@
             </div>
             <button type="submit" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600" on:click={handleLogin}>Log In</button>
             <p class="mt-4 text-center">Don't Have Any Account? 
-                <button type="button" class="text-red-500" on:click={() => window.location.href='/profile/register'}>Register</button>
+                <button type="button" class="text-red-500" on:click={() => window.location.href='/project2/register'}>Register</button>
             </p>
         </form>
     </div>
