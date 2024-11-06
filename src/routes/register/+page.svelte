@@ -9,12 +9,12 @@
     };
 </script>
 
-<div class="flex min-h-screen">
+<div class="flex flex-col min-h-screen md:flex-row">
     <div class="flex-1 bg-green-800 flex items-center justify-center">
         <img src="image1.png" alt="Fallback description if image fails to load" class="max-w-full h-auto" aria-hidden="true" />
     </div>
     <div class="flex-1 flex items-center justify-center">
-        <form on:submit|preventDefault={handleSubmit} class="p-6 w-2/3">
+        <form on:submit|preventDefault={handleSubmit} class="p-6 w-full md:w-2/3">
             <h2 class="text-2xl font-bold mb-4 text-center">Register</h2>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
