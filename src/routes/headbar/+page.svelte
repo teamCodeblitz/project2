@@ -33,26 +33,12 @@
   <div class="text-white text-lg font-bold">
     EVENT SCHEDULER
   </div>
-  <div class="date-time-container text-white text-lg mt-2 md:mt-0">
+  <div class="date-time-container text-white text-lg mt-2 md:mt-0 flex-1 text-center">
     {currentDateTime}
   </div>
   <button class="text-white font-semibold mt-2 md:mt-0 logout-button" on:click={handleLogout}>
     <i class="fas fa-sign-out-alt"></i>
   </button>
 </nav>
-
-<style>
-  @media (max-width: 648px) {
-    .logout-button {
-      margin-left: auto;
-    }
-    .date-time-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px;
-    }
-  }
-</style>
 
 
