@@ -91,8 +91,8 @@
 				// Ensure parsedEvents is an array
 				if (Array.isArray(parsedEvents)) {
 					events = parsedEvents.sort(
-						(a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime()
-					); // Sort events by start time
+						(a, b) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime()
+					); // Sort events by start time (newest first)
 				} else {
 					console.error('Stored data is not an array:', parsedEvents);
 				}
