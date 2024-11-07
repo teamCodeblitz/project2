@@ -93,7 +93,10 @@
   
   <div>
     <label for="contactNumber" class="block text-sm font-medium text-gray-700">Contact Number</label>
-    <input id="contactNumber" type="tel" bind:value={contactNumber} class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" placeholder="Enter your contact number" required />
+    <input id="contactNumber" type="tel" bind:value={contactNumber} 
+           class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" 
+           placeholder="Enter your contact number" required 
+           pattern="[0-9]*" title="Please enter numbers only." />
     <p class="text-red-500">{errors.contactNumber}</p>
   </div>
   
