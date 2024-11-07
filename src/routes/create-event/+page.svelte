@@ -8,6 +8,7 @@
   let eventName = '';
   let startTime = '';
   let endTime = '';
+  let location = '';
 
   let errors = {
     name: '',
@@ -15,7 +16,8 @@
     eventName: '',
     startTime: '',
     endTime: '',
-    emailFormat: ''
+    emailFormat: '',
+    location: ''
   };
 
   let isPopupOpen = true;
@@ -31,7 +33,8 @@
       eventName: eventName ? '' : 'THIS IS REQUIRED',
       startTime: validateDate(startTime),
       endTime: validateDate(endTime),
-      emailFormat: errors.emailFormat
+      emailFormat: errors.emailFormat,
+      location: location ? '' : 'THIS IS REQUIRED'
     };
 
     console.log('Validation Errors:', errors);
@@ -59,26 +62,34 @@
       eventName,
       startTime,
       endTime,
+      location
     };
-    dispatch('schedule', eventData);
 
-    console.log('Event Data:', eventData);
-
+    // Check for duplicate startTime in local storage
     const storedEvents = localStorage.getItem('eventData');
     let events = [];
 
     if (storedEvents) {
-      try {
-        events = JSON.parse(storedEvents);
-        if (!Array.isArray(events)) {
-          console.error('Stored data is not an array:', events);
-          events = [];
+        try {
+            events = JSON.parse(storedEvents);
+            if (!Array.isArray(events)) {
+                console.error('Stored data is not an array:', events);
+                events = [];
+            }
+        } catch (error) {
+            console.error('Error parsing stored events:', error);
         }
-      } catch (error) {
-        console.error('Error parsing stored events:', error);
-      }
     }
 
+    // Check for duplicate startTime
+    const isDuplicate = events.some((event: { startTime: string }) => event.startTime === startTime);
+    if (isDuplicate) {
+        errors.startTime = 'That date is already reserved'; // Set error for duplicate date
+        console.log('Duplicate start time error:', errors.startTime);
+        return;
+    }
+
+    // Proceed to store the event if no duplicates
     events.push(eventData);
     localStorage.setItem('eventData', JSON.stringify(events));
 
@@ -88,6 +99,7 @@
     eventName = '';
     startTime = '';
     endTime = '';
+    location = '';
     
     closePopup(); // Close the popup
   }
@@ -155,9 +167,17 @@
     </div>
   </div>
   
+  <div>
+    <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+    <input id="location" type="text" bind:value={location} 
+           class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" 
+           placeholder="Enter event location" required />
+    <p class="text-red-500">{errors.location}</p>
+  </div>
+  
   <button type="button" on:click={scheduleEvent} 
           class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700" 
-          disabled={!name || !contactNumber || !eventName || !startTime || !endTime}>
+          disabled={!name || !contactNumber || !eventName || !startTime || !endTime || !location}>
     Schedule Now
   </button>
 </form>

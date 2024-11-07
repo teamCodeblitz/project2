@@ -10,6 +10,7 @@
 		eventName: string;
 		startTime: string;
 		endTime: string;
+		location: string;
 	}
 
 	let showPopup = false; // State to control the popup visibility
@@ -158,6 +159,7 @@
 					<th class="border border-gray-300 px-4 py-2">Event Name</th>
 					<th class="border border-gray-300 px-4 py-2">Start Time</th>
 					<th class="border border-gray-300 px-4 py-2">End Time</th>
+					<th class="border border-gray-300 px-4 py-2">Location</th>
 					<th class="border border-gray-300 px-4 py-2">Actions</th>
 				</tr>
 			</thead>
@@ -173,6 +175,7 @@
 						<td class="border border-gray-300 px-4 py-2 text-center"
 							>{formatDateTime(event.endTime)}</td
 						>
+						<td class="border border-gray-300 px-4 py-2 text-center">{event.location}</td>
 						<td class="border border-gray-300 px-4 py-2 text-center">
 							<button class="text-red-600 hover:text-red-700" on:click={() => confirmDelete(event)}>
 								<i class="fas fa-trash"></i> Delete
@@ -182,7 +185,7 @@
 				{/each}
 				{#if events.length === 0}
 					<tr>
-						<td class="border border-gray-300 px-4 py-2 text-center" colspan="6"
+						<td class="border border-gray-300 px-4 py-2 text-center" colspan="7"
 							>No events available</td
 						>
 					</tr>
