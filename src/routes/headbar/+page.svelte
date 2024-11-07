@@ -33,7 +33,7 @@
   <div class="text-white text-lg font-bold">
     EVENT SCHEDULER
   </div>
-  <div class="date-time-container text-white text-lg mt-2 md:mt-0 flex-1 text-center">
+  <div class="date-time-container text-white text-lg mt-2 md:mt-0 flex-1 text-center md:flex md:justify-center">
     {currentDateTime}
   </div>
   <button class="text-white font-semibold mt-2 md:mt-0 logout-button md:ml-auto">
