@@ -102,7 +102,7 @@
     location = '';
     
     closePopup(); // Close the popup
-    location.reload(); // Reload the page
+    window.location.reload(); // Reload the page
   }
 
   function handleContactNumberInput(e: Event) {
