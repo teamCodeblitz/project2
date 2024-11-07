@@ -14,7 +14,8 @@
     contactNumber: '',
     eventName: '',
     startTime: '',
-    endTime: ''
+    endTime: '',
+    emailFormat: ''
   };
 
   let isPopupOpen = true;
@@ -29,7 +30,8 @@
       contactNumber: contactNumber ? '' : 'THIS IS REQUIRED',
       eventName: eventName ? '' : 'THIS IS REQUIRED',
       startTime: startTime ? '' : 'THIS IS REQUIRED',
-      endTime: endTime ? '' : 'THIS IS REQUIRED'
+      endTime: endTime ? '' : 'THIS IS REQUIRED',
+      emailFormat: errors.emailFormat
     };
 
     console.log('Validation Errors:', errors);
@@ -86,14 +88,18 @@
     const target = e.target as HTMLInputElement;
     contactNumber = target.value.replace(/[^0-9]/g, '');
   }
+
+  function validateEmail() {
+    errors.emailFormat = name && !name.endsWith('@gmail.com') ? 'The format must be youremail@gmail.com' : '';
+  }
 </script>
 
 <h2 class="text-2xl font-bold mb-4">Add Event</h2>
 <form class="space-y-4">
   <div>
     <label for="name" class="block text-sm font-medium text-gray-700">Email</label>
-    <input id="name" type="text" bind:value={name} class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" placeholder="Enter your email" required />
-    <p class="text-red-500">{errors.name}</p>
+    <input id="name" type="text" bind:value={name} class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" placeholder="Enter your email" required on:input={validateEmail} />
+    <p class="text-red-500">{errors.emailFormat}</p>
   </div>
   
   <div>
