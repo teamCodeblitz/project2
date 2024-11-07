@@ -81,6 +81,11 @@
     
     closePopup(); // Close the popup
   }
+
+  function handleContactNumberInput(e: Event) {
+    const target = e.target as HTMLInputElement;
+    contactNumber = target.value.replace(/[^0-9]/g, '');
+  }
 </script>
 
 <h2 class="text-2xl font-bold mb-4">Add Event</h2>
@@ -93,10 +98,10 @@
   
   <div>
     <label for="contactNumber" class="block text-sm font-medium text-gray-700">Contact Number</label>
-    <input id="contactNumber" type="tel" bind:value={contactNumber} 
+    <input id="contactNumber" type="text" bind:value={contactNumber} 
            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" 
            placeholder="Enter your contact number" required 
-           pattern="[0-9]*" title="Please enter numbers only." />
+           on:input={handleContactNumberInput} />
     <p class="text-red-500">{errors.contactNumber}</p>
   </div>
   
