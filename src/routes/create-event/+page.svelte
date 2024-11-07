@@ -29,13 +29,21 @@
       name: name ? '' : 'THIS IS REQUIRED',
       contactNumber: contactNumber ? '' : 'THIS IS REQUIRED',
       eventName: eventName ? '' : 'THIS IS REQUIRED',
-      startTime: startTime ? '' : 'THIS IS REQUIRED',
-      endTime: endTime ? '' : 'THIS IS REQUIRED',
+      startTime: validateDate(startTime),
+      endTime: validateDate(endTime),
       emailFormat: errors.emailFormat
     };
 
     console.log('Validation Errors:', errors);
     return Object.values(errors).every(error => error === '');
+  }
+
+  function validateDate(dateString: string) {
+    const date = new Date(dateString);
+    if (date.getFullYear() < 2024) {
+        return 'Year not valid'; // Error for year below 2024
+    }
+    return ''; // Clear error if valid
   }
 
   function scheduleEvent() {
