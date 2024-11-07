@@ -86,7 +86,20 @@
 
   function handleContactNumberInput(e: Event) {
     const target = e.target as HTMLInputElement;
-    contactNumber = target.value.replace(/[^0-9]/g, '');
+    const value = target.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+
+    // Validate the contact number
+    if (target.value.match(/[a-zA-Z]/)) {
+        errors.contactNumber = 'This must be numbers'; // Error for letters
+    } else if (value.length > 11) {
+        errors.contactNumber = 'This must only be 11 numbers'; // Error for more than 11 digits
+    } else if (!value.startsWith('09') && value.length > 0) {
+        errors.contactNumber = 'It must start at 09'; // Error for not starting with 09
+    } else {
+        errors.contactNumber = ''; // Clear error if valid
+    }
+
+    contactNumber = value; // Update the contact number
   }
 
   function validateEmail() {
