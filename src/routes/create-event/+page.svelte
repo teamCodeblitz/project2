@@ -170,9 +170,14 @@
   
   <div>
     <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
-    <input id="location" type="text" bind:value={location} 
-           class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" 
-           placeholder="Enter event location" required />
+    <div class="flex items-center">
+      <input id="location" type="text" bind:value={location} 
+             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" 
+             placeholder="Enter event location" required />
+      <button type="button" on:click={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`, '_blank')} class="ml-2">
+        <i class="fas fa-globe"></i> <!-- Font Awesome Globe Icon -->
+      </button>
+    </div>
     <p class="text-red-500">{errors.location}</p>
   </div>
   
