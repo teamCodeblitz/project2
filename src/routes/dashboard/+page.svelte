@@ -62,6 +62,11 @@
 			minute: 'numeric',
 			hour12: true
 		};
+		const currentYear = new Date().getFullYear(); // Get the current year
+		const eventYear = new Date(dateTime).getFullYear(); // Get the event year
+		if (eventYear < currentYear) {
+			return 'Invalid date'; // Return a message for invalid dates
+		}
 		return new Date(dateTime).toLocaleString('en-US', options);
 	}
 
