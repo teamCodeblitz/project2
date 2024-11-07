@@ -114,12 +114,16 @@
   <div class="grid grid-cols-2 gap-4">
     <div>
       <label for="startTime" class="block text-sm font-medium text-gray-700">Start Time</label>
-      <input id="startTime" type="datetime-local" bind:value={startTime} class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" required />
+      <input id="startTime" type="datetime-local" bind:value={startTime} 
+             min={new Date().toISOString().slice(0, 16)} 
+             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" required />
       <p class="text-red-500">{errors.startTime}</p>
     </div>
     <div>
       <label for="endTime" class="block text-sm font-medium text-gray-700">End Time</label>
-      <input id="endTime" type="datetime-local" bind:value={endTime} class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" required />
+      <input id="endTime" type="datetime-local" bind:value={endTime} 
+             min={new Date().toISOString().slice(0, 16)} 
+             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" required />
       <p class="text-red-500">{errors.endTime}</p>
     </div>
   </div>
