@@ -21,6 +21,22 @@
 	let currentPage = 1; // State to track the current page
 	const eventsPerPage = 18; // Number of events to display per page
 
+	let windowWidth = 0;
+
+	onMount(() => {
+		// Set initial window width
+		windowWidth = window.innerWidth;
+
+		const handleResize = () => {
+			windowWidth = window.innerWidth; // Update window width on resize
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize); // Clean up on component unmount
+		};
+	});
+
 	function addEvent(event: CustomEvent<Event>) {
 		events = [...events, event.detail]; // Add new event to the events array
 		showPopup = false; // Close the popup after scheduling
@@ -151,47 +167,55 @@
 	{/if}
 
 	<div class="overflow-x-auto">
-		<table class="w-full border-collapse border border-gray-300 shadow-md">
-			<thead class="table-header-group bg-gray-200">
-				<tr>
-					<th class="border border-gray-300 px-4 py-2">Email</th>
-					<th class="border border-gray-300 px-4 py-2">Contact</th>
-					<th class="border border-gray-300 px-4 py-2">Event Name</th>
-					<th class="border border-gray-300 px-4 py-2">Start Time</th>
-					<th class="border border-gray-300 px-4 py-2">End Time</th>
-					<th class="border border-gray-300 px-4 py-2">Location</th>
-					<th class="border border-gray-300 px-4 py-2">Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each events.slice((currentPage - 1) * eventsPerPage, currentPage * eventsPerPage) as event}
-					<tr class={new Date(event.startTime) < new Date() ? 'bg-gray-100' : ''}>
-						<td class="border border-gray-300 px-4 py-2 text-center">{event.name}</td>
-						<td class="border border-gray-300 px-4 py-2 text-center">{event.contactNumber}</td>
-						<td class="border border-gray-300 px-4 py-2 text-center">{event.eventName}</td>
-						<td class="border border-gray-300 px-4 py-2 text-center"
-							>{formatDateTime(event.startTime)}</td
-						>
-						<td class="border border-gray-300 px-4 py-2 text-center"
-							>{formatDateTime(event.endTime)}</td
-						>
-						<td class="border border-gray-300 px-4 py-2 text-center">{event.location}</td>
-						<td class="border border-gray-300 px-4 py-2 text-center">
-							<button class="text-red-600 hover:text-red-700" on:click={() => confirmDelete(event)}>
+		<div>
+			{#if events.length === 0}
+				<p class="text-center text-gray-500">No events have been scheduled yet.</p>
+			{:else if windowWidth < 450}
+				<div class="card-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+					{#each events.slice((currentPage - 1) * eventsPerPage, currentPage * eventsPerPage) as event}
+						<div class="card border border-gray-300 rounded-lg p-6 shadow-md transition-shadow duration-200 bg-white hover:shadow-lg hover:scale-105">
+							<h3 class="font-bold text-lg mb-2">{event.eventName}</h3>
+							<p class="text-gray-700"><strong>Contact:</strong> {event.contactNumber}</p>
+							<p class="text-gray-700"><strong>Start Time:</strong> {formatDateTime(event.startTime)}</p>
+							<p class="text-gray-700"><strong>End Time:</strong> {formatDateTime(event.endTime)}</p>
+							<p class="text-gray-700"><strong>Location:</strong> {event.location}</p>
+							<button class="mt-4 text-red-600 hover:text-red-700 transition duration-200 transform hover:scale-105" on:click={() => confirmDelete(event)}>
 								<i class="fas fa-trash"></i> Delete
 							</button>
-						</td>
-					</tr>
-				{/each}
-				{#if events.length === 0}
-					<tr>
-						<td class="border border-gray-300 px-4 py-2 text-center" colspan="7"
-							>No events available</td
-						>
-					</tr>
-				{/if}
-			</tbody>
-		</table>
+						</div>
+					{/each}
+				</div>
+			{:else}
+				<table class="min-w-full divide-y divide-gray-200">
+					<thead class="bg-gray-50">
+						<tr>
+							<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event Name</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Time</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">End Time</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+						</tr>
+					</thead>
+					<tbody class="bg-white divide-y divide-gray-200">
+						{#each events as event, index}
+							<tr class={index % 2 === 0 ? 'bg-gray-50 hover:bg-gray-100' : 'bg-white hover:bg-gray-100'}>
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{event.eventName}</td>
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{event.contactNumber}</td>
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{formatDateTime(event.startTime)}</td>
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{formatDateTime(event.endTime)}</td>
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{event.location}</td>
+								<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+									<button class="text-red-600 hover:text-red-700 transition duration-200 transform hover:scale-105" on:click={() => confirmDelete(event)}>
+										<i class="fas fa-trash"></i> Delete
+									</button>
+								</td>
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			{/if}
+		</div>
 	</div>
 </div>
 
@@ -259,5 +283,35 @@
     .delete-text{
       font-size: 1.0rem;
     }
+	}
+
+	@media (max-width: 450px) {
+		/* Card style for mobile view */
+		.overflow-x-auto {
+			overflow-x: hidden; 
+		}
+		table {
+			display: none; /* Hide the table */
+		}
+		.card-container {
+			display: flex;
+			flex-direction: column;
+		}
+		.card {
+			background-color: white;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			margin-bottom: 10px;
+		}
+	}
+
+	@media (min-width: 451px) {
+		/* Table style for larger screens */
+		.card {
+			display: none; /* Hide the card */
+		}
+		table {
+			width: 100%; /* Show the table */
+			display: table; /* Ensure the table is displayed */
+		}
 	}
 </style>
